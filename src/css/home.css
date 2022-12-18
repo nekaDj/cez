@@ -1,0 +1,491 @@
+:root{
+    /*Size*/
+    --wdt-img-home-overlay: 400px;
+    --hgt-img-home-overlay: 70px;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/*Home CSS*/
+.home{
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+.home_image{
+    width: 100%;
+    position: relative;
+}
+/* .home_image_1, .home_image_2{
+    width:100%;
+    height: var(--hgt-img-home);
+    object-fit: cover;
+} */
+
+/*Backgroundimage change*/
+/* .home_image_1{
+    animation-name: home_image_swipe_1;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-delay: 4s;
+    animation-direction: alternate-reverse;
+}
+
+.home_image_2 {
+    animation-name: home_image_swipe_2;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-delay: 4s;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes home_image_swipe_1 {
+    0%{
+        width: 100%;
+    }
+    50%{
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+@keyframes home_image_swipe_2 {
+    0% {
+        width: 0%;
+    }
+    50% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+} */
+
+/* Hide the images by default */
+.home_image_mySlides {
+    display: none;
+    width: 100%;
+    height: var(--hgt-img-home);
+    object-fit: cover;
+    animation: animation_slider 0.5s ease-in;
+}
+
+
+@keyframes animation_slider {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+/* Next & previous buttons */
+.home_btn_prev,
+.home_btn_next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+
+/* Position the "next button" to the right */
+.home_btn_next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.home_btn_prev:hover,
+.home_btn_next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+/*Text on the image*/
+.home_image_text{
+    position: absolute;
+    bottom: 50%;
+    right: 50%;
+        transform: translateX(50%);
+    /* padding-inline: 0.5rem; */
+    font-size: xx-large;
+    font-weight: bolder;
+    /* color: var(--clr-white); */
+    /* text-shadow: 1px 1px 2px black, 0 0 1em var(--clr-blue-dark), 0 0 0.2em var(--clr-blue-dark); */
+    text-align: center;
+    animation: animation_slider_text 0.5s ease-in;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    display: none;
+    color:transparent;
+}
+
+@media (max-width: 481px) {
+    .home_image_text {
+        font-size: 1.25rem;
+    }
+}
+
+@keyframes animation_slider_text {
+    0% {
+        
+    }
+
+    100% {
+        color: var(--clr-white);
+        text-shadow: 1px 1px 2px black, 0 0 1em var(--clr-blue-dark), 0 0 0.2em var(--clr-blue-dark);
+    }
+}
+
+/*Box overlay*/
+
+.overlay{
+    /*width: var(--wdt-img-home-overlay);
+    height: var(--hgt-img-home-overlay);*/
+    padding-inline: var(--pad-inline); 
+    padding-block: var(--pad-block);
+    border-radius: 5px ;
+    background-color: var(--clr-white);
+    position: absolute;
+    top: calc(var(--hgt-img-home) - var(--hgt-img-home-overlay)/2);
+    /*left: calc(50% - var(--wdt-img-home-overlay)/2);*/
+    right: 50%;
+        transform: translateX(50%);
+    /*transform: translateX(var(--wdt-img-home));*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    box-shadow: 0px 2px 5px var(--clr-blue-light);
+}
+
+
+
+
+
+.overlay_text {
+    color: var(--clr-blue-darker);
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*Home menu*/
+
+.home_menu{
+    width: min-content;
+    align-self: center;
+    margin-top: 100px; /*avoid overlay*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--clr-blue-darker);
+    box-shadow: 0px 2px 5px var(--clr-blue-lighter);
+    margin-inline: 1rem;
+    border-radius: 5px 5px 0 0;
+}
+
+.home_menu_box{
+    padding-inline: 1.5em;
+    padding-block: 1em;
+    white-space: nowrap; /*Avoid to wrap word*/
+    cursor: pointer;
+}
+
+@media (max-width: 481px) {
+    .home_menu_box {
+        padding-inline: 1em;
+    }
+}
+
+.home_menu_box:hover, .home_menu_active {
+    background-color: var(--clr-blue-lighter_1);
+    border-radius: 5px 5px 0 0;
+}
+
+
+/*Mission*/
+
+.home_mission{
+    margin-top: 2em;
+    /*padding-inline: var(--pad-inline);*/
+    padding-inline: 1rem;
+    display: flex;
+    /*flex-wrap: wrap;*/
+    justify-content: center;
+    gap:1em;
+    flex-wrap: wrap;
+}
+
+.home_mission_item{
+    /*min-width: 300px;
+    max-width: calc(var(--wdt-img-home)/2 - var(--pad-inline) - 2em);*/
+    flex-basis: 300px;
+    flex-grow: 1;
+    
+}
+
+.home_mission_image{
+    height: 400px;
+    object-fit: cover;
+}
+
+.home_mission_item_text{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2.5rem;
+}
+
+.home_mission_item_logo{
+    width: 80px;
+    float: left;
+    padding-right: 1rem;
+}
+
+/*News*/
+
+.news {
+    display: flex;
+    flex-direction: column;
+    margin-block: 4rem;
+    
+}
+
+.news_title{
+    color: var(--clr-blue-darker);
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-left: 2rem;
+}
+
+.news_{
+    background-color: var(--clr-gray-lighter);
+    display: flex;
+    align-items: center;
+    
+}
+
+.news_slider{
+    /* background-color: var(--clr-blue-darker); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding-inline: 0.5rem;
+}
+
+.news_slider_lr {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: var(--clr-blue-darker);
+    color: var(--clr-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+@media (max-width: 481px) {
+    .news_slider_lr {
+        width: 20px;
+        height: 20px;
+        font-size: 1em;
+    }
+}
+
+
+
+.news_slider_left{
+    left: 10px; 
+}
+.news_slider_right {
+    right: 10px;
+}
+
+.news_boxes{
+    display: flex;
+    gap: 50px;
+    flex-grow: 1;
+    /* padding-inline: 2rem; */
+    background-color: var(--clr-gray-lighter);
+
+    scroll-snap-type: inline mandatory;
+    scroll-padding-inline: 50px;
+    
+    overflow-x: scroll;
+}
+
+.news_box{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    
+    padding-block: 2rem;
+    /*The scoll will automatically place box at the begining of the box*/
+    scroll-snap-align: start;
+}
+.news_box_image{
+    width: 230px;
+    height: 230px;
+    overflow: hidden;
+}
+
+.news_box_image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all .3s ease;
+}
+
+.news_box_image img:hover {
+    transform: scale(1.5);
+}
+
+.news_box_info {
+    border-top: 4px solid var(--clr-blue-darker);
+    background-color: var(--clr-white);
+    width: 230px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1rem;
+    box-shadow: 0px 2px 5px var(--clr-blue-light);
+    font-size: small;
+}
+
+/*Why choose us*/
+.home_badge{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-block: 10px;
+}
+
+
+.home_badge_title{
+    text-align: center;
+    color: var(--clr-blue-darker);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.home_badge_row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.home_badges_item{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    width: 200px;
+    margin-block: 20px;
+}
+
+/* .home_badges_item_icon{
+    font-size: xx-large;
+    padding: 20px;
+    border: 1px solid var(--clr-blue-darker);
+    border-radius: 50%;
+} */
+
+.home_badges_item_frame {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 50%;
+}
+
+.home_badges_item_frame_icon {
+    font-size: xx-large;
+}
+
+/* I separate circle from icon flow in order to apply animation only on circle */
+
+.home_badges_item_frame_circle{
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--clr-blue-darker);
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+}
+
+.home_badges_item_frame_circle_ball {
+    width: 10px;
+    height: 10px;
+    background-color: var(--clr-blue-dark);
+    border: 0.25px solid var(--clr-white);
+    border-radius: 50%;
+    position: absolute;
+    top:-5px;
+    left: calc(50% - 5px);
+}
+
+/*animation on circle */
+.home_badges_item_frame_circle:hover{
+    transform: rotate(360deg);
+    transition-property: transform;
+    transition-duration: 4s;
+}
+
+/*animation on frame */
+.home_badges_item_frame:hover{
+    background-color: var(--clr-green-yellow);
+    transition-property: background-color, color;
+    transition-duration: 2s, 2s;
+    
+}
+
+/*animation on icon*/
+.home_badges_item_frame:first-child:hover {
+    color: var(--clr-blue-light);
+}
+
+
+
+
+
+.home_badges_item_text {
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+    

@@ -1,38 +1,485 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+:root {
+  /* dark shades of primary color*/
+  --clr-blue-darker: #213341;
+  --clr-blue-dark: #283f50;
+  --clr-blue-dark-transparent: #283f50bb;
+  --clr-blue-lighter: #90c1ec;
+  --clr-blue-lighter_1: #d0e5f7;
+  --clr-blue-light: #92b6df;
+  --clr-green-darker: #038036;
+  --clr-green-yellow: greenyellow;
+  --clr-gray-lighter: #f5f5f5;
+  --clr-gray-light: #bbbbbb;
+  --clr-blue: #478ac9;
+  --clr-blue_darker_1: rgb(65, 86, 128);
+  --clr-white: #ffffff;
+  --clr-white_transp25: rgb(255, 255, 255, 0.25);
+  /*Padding*/
+  --pad-inline: 4em;
+  --pad-block: 1em;
+  /*Size*/
+  --wdt-nav: 100%;
+  --hgt-nav: 70px;
+  --wdt-img-home: 100%;
+    --hgt-img-home: 400px;
+  /*font size*/
+  --ft-size-burger : 2.5rem;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+nav {
+  height: var(--hgt-nav);
+  width: var(--wdt-nav);
+  /* background-color: rgba(117, 190, 218, 0.0); */
+  color: var(--clr-white);
+  /* border-bottom: 0.5px solid var(--clr-blue-darker);
+  box-shadow: 0px 2px 5px var(--clr-blue-light); */
+  
+  display: flex;
+  justify-content: space-between;
+    position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2em 3em;
+      transition: transparent 250ms ease-in-out;
+      transition: background-color 1s ease-in-out;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+nav .logo {
+  padding-block:15px;
+  cursor: pointer;
+  padding-left: 1rem;
+  height: 60px;
+}
+
+/* .logo {
+  padding-block: 15px;
+  padding-left: 10px;
+  cursor: pointer;
+} */
+
+nav ul {
+  display: flex;
+  align-items: center;
+  gap:2rem;
+  list-style: none;
+  padding-right: 1rem;
+  
+}
+
+
+
+
+nav ul li {
+  text-transform: uppercase;
+  font-size: 0.90rem;
+  position: relative;
+}
+
+/* reduce thee size of the link when the display shrink */
+
+@media (max-width: 952px) {
+  nav ul li {
+      display: flex;
+      flex-wrap: nowrap;
+      text-transform: uppercase;
+      font-size: 0.70rem;
+      /* color: var(--clr-blue-darker); */
+    }
+}
+
+
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--clr-white);
+    /* text-shadow: var(--clr-blue-light) 1px 0 10px; */
+    text-shadow: 1px 1px 2px black, 0 0 1em var(--clr-blue-dark), 0 0 0.2em var(--clr-blue-dark);
+    position: relative;
+}
+
+nav ul li a:after {
+  content: "";
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0.5rem;
+    right: 0.5rem;
+  height: 2px;
+  background-color: var(--clr-white);
+  box-shadow: 1px 1px 2px black, 0 0 1em var(--clr-blue-dark), 0 0 0.2em var(--clr-blue-dark);
+  /* background: currentColor; */
+  /* -webkit-transform: scaleX(0); */
+  transform: scaleX(0);
+  transition: transform 150ms ease-in-out;
+}
+
+nav ul li a:hover::after {
+  transform: scaleX(1);
+}
+
+/* checkbutton for burger button to simulate click on css*/
+
+.checkbtn {
+  font-size: var(--ft-size-burger);
+  float: right;
+  line-height: var(--hgt-nav);
+  cursor: pointer;
+}
+
+#check{
+  display: none;
+}
+
+
+nav label  span {
+  float: right;
+  line-height: var(--hgt-nav);
+  font-size: var(--ft-size-burger);
+  margin-inline: 10px;
+  cursor: pointer;
+  display: none;
+}
+
+
+
+/* When the display shrink below 850pw and we have to add burger button*/
+@media (max-width: 850px) {
+  /* burger button added */
+  nav label span {
+    display: block;
+  }
+
+  /* We change the background of nav*/
+  nav {
+    background-color: var(--clr-blue-darker);
+    border-bottom: 0.5px solid var(--clr-blue-darker);
+    box-shadow: 0px 2px 5px var(--clr-blue-light); 
+  }
+
+
+  /* space where the menu will be shown */
+  nav ul{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--clr-blue-dark-transparent);
+    top:var(--hgt-nav); ; 
+    padding-top: 2rem;/* +the size of the padding between header and accueil*/
+    padding-left: 2rem;
+    left: -100%; /*At the beginning the menu is far*/
+    z-index: 1;
+    transition: all 1s;
+  }
+
+  
+
+  nav ul li{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+ 
+  /*Display of the menu in mobile*/
+  nav ul li a{
+    color: var(--clr-white);
+    font-size: 1rem;
+    text-shadow: none;
+    background-color:none;
+    padding-inline: 0rem;
+    padding-block: 0rem;
+    border-radius: 0px;
+    transition: all 400ms ease-in-out;
+  }
+
+ 
+
+  nav ul li a:hover {
+    background-color: #1b9bff;
+      padding-inline: 1.5rem;
+      padding-block: 0.5rem;
+      border-radius: 5px;
+      font-weight: bold;
+      text-shadow: none;
+      white-space: nowrap;
+  }
+
+  
+
+  /*We remove after composant*/
+  nav ul li a:after {
+    display: none;
+  }
+    /*When we clickon the menu bar hamburger*/
+  /* #check:checked ~ ul{
+    left:0; 
+  } */
+}
+
+/* When we scroll, we change background of nav */
+.nav_scroll{
+  background-color: var(--clr-blue-dark);
+}
+
+/*When the nav is active*/
+.nav_active{
+  background-color: #1b9bff;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  border-radius: 2px;
+  font-weight: bold;
+  text-shadow: none;
+  white-space: nowrap;
+}
+
+/*Display of active menu in the mobile*/
+@media (max-width: 850px) {
+  .nav_active {
+    background-color: #1b9bff;
+    padding-inline: 1.5rem;
+    padding-block: 0.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    text-shadow: none;
+    white-space: nowrap;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*Submenu*/
+.submenu {
+  position: absolute; /*Parent : nav ul li, relative*/
+  top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 2px;
+  padding: 1rem;
+  white-space: nowrap;
+  background-color: var(--clr-blue-darker);
+}
+
+@media (max-width: 850px) {
+  .submenu {
+    position: static;
+      width: auto;
+      height: auto;
+      margin-left: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 1rem;
+      border-radius: 1px;
+      padding: 1rem;
+      white-space: nowrap;
+      background-color: var(--clr-blue-darker);
+      z-index: 2;
+    }
+}
+
+
+/*General style*/
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+.column_display {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5em;
+  gap: 2em;
+}
+
+.row_display {
+  display: flex;
+  padding: 0.5em;
+  gap: 0.2em;
+  width: 100%;
+}
+
+.title {
+  color: var(--clr-blue-darker);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  color: var(--clr-blue-darker);
+  font-weight: bold;
+}
+
+.divider_light {
+  border: 1px solid var(--clr-blue-light);
+  width: 100px;
+}
+
+.divider_darker {
+  border: 1px solid var(--clr-blue-darker);
+  width: 100px;
+}
+
+.divider_thin_dark {
+  border: 2px solid var(--clr-blue-darker);
+  width: 100%;
+}
+
+/*Loader */
+/* .loader{
+  width: 10px;
+  height: 10px;
+  margin: 40px auto;
+  border-radius: 50%;
+  background: var(--clr-blue-dark);
+} */
+
+
+/*--------------------------*/
+/*Image slide*/
+/*--------------------------*/
+.default_image {
+  width: 100%;
+  position: relative;
+}
+
+
+
+.default_image_mySlides {
+  display: none;
+  width: 100%;
+  height: var(--hgt-img-home);
+  object-fit: cover;
+  animation: default_animation_slider 0.5s ease-in;
+}
+
+
+@keyframes default_animation_slider {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+/* Next & previous buttons */
+.default_btn_prev,
+.default_btn_next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+
+/* Position the "next button" to the right */
+.default_btn_next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.default_btn_prev:hover,
+.default_btn_next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+/*Text on the image*/
+.default_image_text {
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  transform: translateX(50%);
+  /* padding-inline: 0.5rem; */
+  font-size: xx-large;
+  font-weight: bolder;
+  /* color: var(--clr-white); */
+  /* text-shadow: 1px 1px 2px black, 0 0 1em var(--clr-blue-dark), 0 0 0.2em var(--clr-blue-dark); */
+  text-align: center;
+  animation: default_animation_slider_text 0.5s ease-in;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  display: none;
+  color: transparent;
+}
+
+@media (max-width: 481px) {
+  .default_image_text {
+    font-size: 1.25rem;
+  }
+}
+
+@keyframes default_animation_slider_text {
+  0% {}
+
+  100% {
+    color: var(--clr-white);
+    text-shadow: 1px 1px 2px black, 0 0 1em var(--clr-blue-dark), 0 0 0.2em var(--clr-blue-dark);
+  }
+}
+
+.default_title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--clr-blue-dark);
 }
 
-.App-link {
-  color: #61dafb;
+@media (max-width: 1024px) {
+  .default_title {
+    font-size: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+}
+@media (max-width: 481px) {
+  .default_title {
+    font-size: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav_ul_disappear {
+  left: -100%;
 }
+
+.nav_ul_appear {
+  left: 0;
+}
+
+
+
