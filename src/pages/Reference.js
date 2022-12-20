@@ -34,7 +34,8 @@ const Reference = ({exitVariants, revealVariants})=>{
     
     useEffect(()=>{
          showSlides(slideIndex, slideIndex, reference);
-    }, [0])
+         // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
      /**swipe image automatically */
     useEffect(() => {
